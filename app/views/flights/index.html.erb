@@ -1,7 +1,7 @@
 
 
 <h1>Flight Search </h1>
-
+<h3>Example jungle book </h3>
 <%= form_with url: "/flights", model:@flight, method: :get do |form| %>
     <div class="row">
         <div class="d-flex">
@@ -9,7 +9,7 @@
              <%= form.label :from_airport, "From: " %>
             </h5>
 
-            <%= form.select :from_airport, options_for_select(@from_airports), class:"form-control" %>
+            <%= form.select :from_airport, options_for_select(@available_airports), class:"form-control" %>
         </div>
 
         <div class="d-flex">
@@ -17,7 +17,7 @@
              <%= form.label :to_airport, "To: " %>
             </h5>
 
-            <%= form.select :to_airport, options_for_select(@to_airports), class:"form-control" %>
+            <%= form.select :to_airport, options_for_select(@available_airports), class:"form-control" %>
         </div>
 
         <div class="d-flex">
