@@ -10,16 +10,31 @@ airports = Airport.create([
     { airport_code: "SFO", address:"123 Fake Street", name:"San Francisco International"},
     { airport_code: "MIA", address:"124 Fake Street", name:"Miami International"},
 ])
+#
+p "Testing"
 
+# p "Airports"
+# p Airport.first
+# p Airport.last
+#
 flights = Flight.create([
-    { from_airport: 1,
-      to_airport: 2,
-      flight_duration: 60,
-      start_datetime: "2020-12-24 21:33:02"
+    {
+        from_airport_id: airports.first.id,
+        to_airport_id: airports.last.id,
+        flight_duration: 60,
+        start_datetime: "2020-12-24 21:33:02"
     },
-    { from_airport: 2,
-      to_airport: 1,
-      flight_duration: 180,
-      start_datetime: "2020-12-31 21:33:02"
-    },
+    {
+        from_airport_id: airports.last.id,
+        to_airport_id: airports.first.id,
+        flight_duration: 60,
+        start_datetime: "2020-12-24 21:33:02"
+    }
 ])
+#
+p flights
+
+flights.each do  |flight|
+    p "~~~~~~~~~~~~~"
+    p flight.errors.full_messages
+end

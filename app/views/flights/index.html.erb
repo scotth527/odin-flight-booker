@@ -1,0 +1,34 @@
+
+
+<h1>Flight Search </h1>
+
+<%= form_with url: "/flights", model:@flight, method: :get do |form| %>
+    <div class="row">
+        <div class="d-flex">
+            <h5 class="text-right">
+             <%= form.label :from_airport, "From: " %>
+            </h5>
+
+            <%= form.select :from_airport, options_for_select(@from_airports), class:"form-control" %>
+        </div>
+
+        <div class="d-flex">
+            <h5 class="text-right">
+             <%= form.label :to_airport, "To: " %>
+            </h5>
+
+            <%= form.select :to_airport, options_for_select(@to_airports), class:"form-control" %>
+        </div>
+
+        <div class="d-flex">
+            <h5 class="text-right">
+             <%= form.label :start_datetime, "Date" %>
+            </h5>
+
+            <%= form.date_field :start_datetime, class:"form-control" %>
+        </div>
+
+    </div>
+
+    <%= form.submit "Show flights", class:"btn btn-success" %>
+<% end %>

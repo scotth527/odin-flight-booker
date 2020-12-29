@@ -39,6 +39,6 @@ ActiveRecord::Schema.define(version: 2020_12_24_211650) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "flights", "from_airports"
-  add_foreign_key "flights", "to_airports"
+  add_foreign_key "flights", "airports", column: "from_airport_id"
+  add_foreign_key "flights", "airports", column: "to_airport_id"
 end
