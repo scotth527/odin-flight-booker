@@ -1,8 +1,9 @@
 
 
 <h1>Flight Search </h1>
-<h3>Example jungle book </h3>
-<%= form_with url: "/flights", model:@flight, method: :get do |form| %>
+
+<%= form_with url: "/flights", method: :get, local: true do |form| %>
+    <%= form.hidden_field :search, :value => true  %>
     <div class="row">
         <div class="d-flex">
             <h5 class="text-right">
@@ -28,7 +29,45 @@
             <%= form.date_field :start_datetime, class:"form-control" %>
         </div>
 
+        <div class="d-flex">
+            <h5 class="text-right">
+             <%= form.label :passenger_count, "Number of Passengers" %>
+            </h5>
+
+            <%= form.select :passenger_count, options_for_select(@passengers), class:"form-control" %>
+        </div>
+
     </div>
 
     <%= form.submit "Show flights", class:"btn btn-success" %>
+<% end %>
+
+<% if @search_results %>
+    <% if @search_results.length() > 0 %>
+        <ul>
+            <% @search_results.each do |flight| %>
+                <li class="d-flex justify-content-between">
+                    <div class="d-flex">
+                        From:
+                        <span> <%= flight.from_airport.name %> </span>
+                        <span> <%= flight.to_airport.airport_code %></span>
+                    </div>
+                    <div class="d-flex">
+                        To:
+                        <span> <%= flight.to_airport.name %> </span>
+                        <span> <%= flight.to_airport.airport_code %> </span>
+                    </div>
+                    <div class="d-flex">
+                        Departure Date:
+                        <span> <%= flight.start_datetime.strftime("%B %d %Y") %> </span>
+                    </div>
+                </li>
+            <% end %>
+        </ul>
+
+    <% else %>
+        <div>
+            No results
+        </div>
+    <% end %>
 <% end %>
