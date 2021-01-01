@@ -4,70 +4,44 @@
 
 <%= form_with url: "/flights", method: :get, local: true do |form| %>
     <%= form.hidden_field :search, :value => true  %>
-    <div class="row">
-        <div class="d-flex">
-            <h5 class="text-right">
-             <%= form.label :from_airport, "From: " %>
-            </h5>
+    <div class="row mb-3">
+        <div class="d-flex justify-content-between">
+            <div class="d-flex">
+                <%= form.select :from_airport, options_for_select(@available_airports),
+                { prompt: "From:", class: 'form-control' } %>
+            </div>
 
-            <%= form.select :from_airport, options_for_select(@available_airports), class:"form-control" %>
+            <div class="d-flex">
+                <%= form.select :to_airport, options_for_select(@available_airports),
+                { prompt: "To:", class: 'form-control' } %>
+            </div>
+
+            <div class="d-flex">
+                <h5 class="text-right">
+                    <%= form.label :start_datetime, "Date" %>
+                </h5>
+
+                <%= form.select(:month, @available_months, class:"form-control") %>
+                <%= form.select(:day, @available_days, class:"form-control") %>
+                <%= form.select(:year, @available_years, class:"form-control") %>
+            </div>
+
+            <div class="d-flex">
+                <h5 class="text-right">
+                 <%= form.label :passenger_count, "Number of Passengers" %>
+                </h5>
+
+                <%= form.select :passenger_count, options_for_select(@passengers), class:"form-control" %>
+            </div>
         </div>
 
-        <div class="d-flex">
-            <h5 class="text-right">
-             <%= form.label :to_airport, "To: " %>
-            </h5>
 
-            <%= form.select :to_airport, options_for_select(@available_airports), class:"form-control" %>
+        <div class="mt-3">
+            <%= form.submit "Show flights", class:"btn btn-success " %>
         </div>
-
-        <div class="d-flex">
-            <h5 class="text-right">
-             <%= form.label :start_datetime, "Date" %>
-            </h5>
-
-            <%= form.date_field :start_datetime, class:"form-control" %>
-        </div>
-
-        <div class="d-flex">
-            <h5 class="text-right">
-             <%= form.label :passenger_count, "Number of Passengers" %>
-            </h5>
-
-            <%= form.select :passenger_count, options_for_select(@passengers), class:"form-control" %>
-        </div>
-
     </div>
 
-    <%= form.submit "Show flights", class:"btn btn-success" %>
+
 <% end %>
 
-<% if @search_results %>
-    <% if @search_results.length() > 0 %>
-        <ul>
-            <% @search_results.each do |flight| %>
-                <li class="d-flex justify-content-between">
-                    <div class="d-flex">
-                        From:
-                        <span> <%= flight.from_airport.name %> </span>
-                        <span> <%= flight.to_airport.airport_code %></span>
-                    </div>
-                    <div class="d-flex">
-                        To:
-                        <span> <%= flight.to_airport.name %> </span>
-                        <span> <%= flight.to_airport.airport_code %> </span>
-                    </div>
-                    <div class="d-flex">
-                        Departure Date:
-                        <span> <%= flight.start_datetime.strftime("%B %d %Y") %> </span>
-                    </div>
-                </li>
-            <% end %>
-        </ul>
-
-    <% else %>
-        <div>
-            No results
-        </div>
-    <% end %>
-<% end %>
+<%= render partial: 'search_result_form', locals: {search_results: @search_results, passengers: params[:passengers]} %>
