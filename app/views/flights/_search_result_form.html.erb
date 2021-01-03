@@ -6,7 +6,7 @@
 
 
         <div class="d-flex justify-content-between border border-dark rounded p-3 mb-3">
-            <%= form.radio_button :flight, flight, class:"align-middle" %>
+            <%= form.radio_button :flight, flight.id, class:"align-middle" %>
             <div>From: <%= flight.from_airport.airport_code %></div>
             <div>To: <%= flight.to_airport.airport_code %></div>
             <div>Start Date: <%=  flight.start_datetime.strftime("%m/%d/%Y") %></div>
@@ -15,7 +15,7 @@
         <% end %>
 
         <div> <%= params[:passenger_count] %> </div>
-        <%= form.submit "Select Flight" %>
+        <%= form.submit "Select Flight", class:"btn btn-primary " %>
     <% else %>
 
         <div>No results</div>

@@ -1,4 +1,5 @@
 class FlightsController < ApplicationController
+
     def index
         @flights = Flight.all
 
@@ -37,4 +38,7 @@ class FlightsController < ApplicationController
     def flight_date_formatted(flight_day)
         flight_day.strftime("%m/%d/%Y")
     end
+
+    
+
 end

@@ -17,7 +17,7 @@
             </div>
 
             <div class="d-flex">
-                <h5 class="text-right">
+                <h5 class="text-right mr-3">
                     <%= form.label :start_datetime, "Date" %>
                 </h5>
 
@@ -27,7 +27,7 @@
             </div>
 
             <div class="d-flex">
-                <h5 class="text-right">
+                <h5 class="text-right mr-3">
                  <%= form.label :passenger_count, "Number of Passengers" %>
                 </h5>
 
@@ -44,4 +44,6 @@
 
 <% end %>
 
-<%= render partial: 'search_result_form', locals: {search_results: @search_results, passengers: params[:passengers]} %>
+<% if @search_results %>
+    <%= render partial: 'search_result_form', locals: {search_results: @search_results, passengers: params[:passengers]} %>
+<% end %>
