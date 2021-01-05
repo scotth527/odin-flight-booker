@@ -1,0 +1,21 @@
+<%= form_with model: @booking, method: :create, local: true do |form| %>
+
+    <%= form.fields_for :passengers do |passengers_form| %>
+
+        <div class="rounded border border-dark mt-3 mb-3 p-4">
+            <h4>Passenger </h4>
+            <%= passengers_form.label :name %>
+            <%= passengers_form.text_field :name, class:"form-control" %>
+
+            <%= passengers_form.label :phone_number %>
+            <%= passengers_form.text_field :phone_number, class:"form-control" %>
+
+            <%= passengers_form.label :email %>
+            <%= passengers_form.text_field :email, class:"form-control" %>
+        </div>
+
+    <% end %>
+
+
+    <%= form.submit "Submit", :class => "btn btn-success" %>
+<% end %>

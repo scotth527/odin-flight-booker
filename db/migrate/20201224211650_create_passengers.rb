@@ -5,6 +5,7 @@ class CreatePassengers < ActiveRecord::Migration[6.0]
       t.string :phone_number
       t.string :email
       t.timestamps
+      t.references :booking, null: false, foreign_key: true
     end
   end
 end

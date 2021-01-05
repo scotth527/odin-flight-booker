@@ -19,7 +19,7 @@ class FlightsController < ApplicationController
                 flash.now[:alert] = "Departure airport is missing."
             elsif params[:to_airport].blank?
                 flash.now[:alert] = "Arrival airport is missing."
-            elseif params[:day].blank? || params[:month].blank? || params[:year].blank?
+            elsif params[:day].blank? || params[:month].blank? || params[:year].blank?
                 flash.now[:alert] = "Date is missing or incorrect."
             end
 
@@ -39,6 +39,6 @@ class FlightsController < ApplicationController
         flight_day.strftime("%m/%d/%Y")
     end
 
-    
+
 
 end

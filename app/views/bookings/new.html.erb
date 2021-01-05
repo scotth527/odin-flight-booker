@@ -1,23 +1,27 @@
 <h1>Book your flight </h1>
 
 <% if @flight && params[:passengers] %>
-
-    <div>Number of Passengers </div>
-    <div><%= params[:passengers] %></div>
-
-    <div>Flight</div>
     <div>
-        <div class="d-flex justify-content-between">
-            <div>From: <%= @flight.from_airport.airport_code %> </div>
-            <div>To: <%= @flight.to_airport.airport_code %> </div>
-            <div>Date Time: <%= @flight.start_datetime.strftime("%m/%d/%Y") %> </div>
+        <div>Number of Passengers </div>
+        <div><%= params[:passengers] %></div>
+
+        <div>Flight</div>
+        <div>
+            <div class="d-flex justify-content-between">
+                <div>From: <%= @flight.from_airport.airport_code %> </div>
+                <div>To: <%= @flight.to_airport.airport_code %> </div>
+                <div>Date Time: <%= @flight.start_datetime.strftime("%m/%d/%Y") %> </div>
+            </div>
         </div>
+
+        <%= render partial: 'booking_form', locals: {search_results: @search_results, passengers: params[:passengers]} %>
     </div>
+
 <% else %>
 <div>
     Flight was not selected. Please return to select a flight.
 </div>
+<!-- This is used to to return the user to the previous url.  -->
 <%= link_to 'Return to select flight', :back %>
-
 
 <% end %>
