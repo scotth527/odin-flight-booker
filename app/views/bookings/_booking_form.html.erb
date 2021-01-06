@@ -1,7 +1,6 @@
 <%= form_with model: @booking, method: :create, local: true do |form| %>
-
+    <% form.hidden_field :flight_id, value: @flight.id %>
     <%= form.fields_for :passengers do |passengers_form| %>
-
         <div class="rounded border border-dark mt-3 mb-3 p-4">
             <h4>Passenger </h4>
             <%= passengers_form.label :name %>
@@ -13,9 +12,6 @@
             <%= passengers_form.label :email %>
             <%= passengers_form.text_field :email, class:"form-control" %>
         </div>
-
     <% end %>
-
-
     <%= form.submit "Submit", :class => "btn btn-success" %>
 <% end %>
