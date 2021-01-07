@@ -1,8 +1,9 @@
 <%= form_with model: @booking, method: :create, local: true do |form| %>
-    <% form.hidden_field :flight_id, value: @flight.id %>
+    <% form.hidden_field :flight_id, value: 4 %>
     <%= form.fields_for :passengers do |passengers_form| %>
         <div class="rounded border border-dark mt-3 mb-3 p-4">
             <h4>Passenger </h4>
+            <%= passengers_form.hidden_field :id, value: nil %>
             <%= passengers_form.label :name %>
             <%= passengers_form.text_field :name, class:"form-control" %>
 

@@ -18,7 +18,12 @@ class BookingsController < ApplicationController
 
     def create
         @booking = Booking.new(booking_params)
-        @flight = Flight.find_by_id(params[:flight])
+
+        p "FLIGHT ID"
+        p params[:flight]
+        p @flight
+        p booking_params
+
         if @booking.save
             redirect_to @booking, :notice => "Booking has been saved successfully."
         else
