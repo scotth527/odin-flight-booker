@@ -2,14 +2,14 @@
 
 <%= form_with url: "/bookings/new", method: :get, local: true do |form| %>
     <%= form.hidden_field :passengers, :value => params[:passenger_count]  %>
-    <h2>Search Results </h2> 
+    <h2>Search Results </h2>
     <% if @search_results.length() > 0 %>
         <% @search_results.each do |flight| %>
         <div class="d-flex justify-content-between border border-dark rounded p-3 mb-3">
-            <%= form.radio_button :flight, flight.id, class:"align-middle" %>
-            <div>From: <%= flight.from_airport.airport_code %></div>
-            <div>To: <%= flight.to_airport.airport_code %></div>
-            <div>Start Date: <%=  flight.start_datetime.strftime("%m/%d/%Y") %></div>
+            <%= form.radio_button :flight, flight.id, class:"align-middle mt-1" %>
+            <div> <strong>From: </strong> <%= flight.from_airport.airport_code %></div>
+            <div><strong>To: </strong><%= flight.to_airport.airport_code %></div>
+            <div><strong>Start Date: </strong><%=  flight.start_datetime.strftime("%m/%d/%Y") %></div>
         </div>
 
         <% end %>
