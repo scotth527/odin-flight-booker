@@ -1,1 +1,38 @@
-<h1>Congrats it worked </h1>
+<div>
+    <h1 class="mt-5">Booking Summary</h1>
+
+    <h2 class="mt-5">Flight Info </h2>
+    <div class="d-flex justify-content-between mb-5">
+        <div><strong>From: </strong><%= @booking.flight.from_airport.airport_code %></div>
+        <div><strong>To:</strong> <%= @booking.flight.to_airport.airport_code %></div>
+        <div><strong>Date: </strong> <%= @booking.flight.start_datetime.strftime("%m/%d/%Y") %></div>
+    </div>
+
+    <div class="mt-5 mb-5">
+        <h2>Passenger Info </h2>
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Phone Number</th>
+              <th scope="col">Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @passengers.each do |passenger| %>
+                <tr>
+                  <td><%= passenger.name %></td>
+                  <td><%= passenger.phone_number %></td>
+                  <td><%= passenger.email %></td>
+                </tr>
+            <% end %>
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        <%= link_to "Book more flights", flights_path %>
+    </div>
+
+</div>

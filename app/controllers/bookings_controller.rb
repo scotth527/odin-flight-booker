@@ -18,19 +18,10 @@ class BookingsController < ApplicationController
 
     def create
         @booking = Booking.new(booking_params)
-
-        p "FLIGHT ID"
-        p params[:flight]
-        p @flight
-        p booking_params
-
         if @booking.save
             redirect_to @booking, :notice => "Booking has been saved successfully."
         else
             flash.now[:alert] = "Booking can not be saved, please review form."
-            p "Booking error"
-            p @booking
-            p @booking.errors.full_messages
             render :new
         end
     end

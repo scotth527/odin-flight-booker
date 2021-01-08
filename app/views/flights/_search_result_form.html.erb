@@ -1,10 +1,10 @@
+
+
 <%= form_with url: "/bookings/new", method: :get, local: true do |form| %>
     <%= form.hidden_field :passengers, :value => params[:passenger_count]  %>
+    <h2>Search Results </h2> 
     <% if @search_results.length() > 0 %>
         <% @search_results.each do |flight| %>
-
-
-
         <div class="d-flex justify-content-between border border-dark rounded p-3 mb-3">
             <%= form.radio_button :flight, flight.id, class:"align-middle" %>
             <div>From: <%= flight.from_airport.airport_code %></div>
@@ -14,8 +14,9 @@
 
         <% end %>
 
-        <div> <%= params[:passenger_count] %> </div>
-        <%= form.submit "Select Flight", class:"btn btn-primary " %>
+        <div class="d-flex justify-content-end">
+            <%= form.submit "Proceed to booking", class:"btn btn-primary " %>
+        </div>
     <% else %>
 
         <div>No results</div>
