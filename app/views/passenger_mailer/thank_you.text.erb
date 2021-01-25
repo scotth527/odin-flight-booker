@@ -1,0 +1,13 @@
+Odin Flight Confirmation
+===============================================
+
+Thank you <%= @user.name %>, for choosing Odin Flights. This notice contains information to be used for your travel.
+Please review your flight carefully.
+
+From: <%= @flight.from_airport.airport_code %>
+To: <%= @flight.to_airport.airport_code %>
+Date: <%= @flight.start_datetime.strftime("%m/%d/%Y %I:%M %p") %>
+
+Please be there atleast an hour in advance to check in.
+
+Thanks for booking with us and have a great day!

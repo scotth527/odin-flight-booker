@@ -18,8 +18,13 @@ class BookingsController < ApplicationController
 
     def create
         @booking = Booking.new(booking_params)
+        p "Booking Info"
+        p @booking.passengers
         if @booking.save
             redirect_to @booking, :notice => "Booking has been saved successfully."
+            @booking.passengers.each do |passenger|
+                PassengerMailer.with(user:passenger, flight: @booking.flight).thank_you.deliver_later
+            end
         else
             flash.now[:alert] = "Booking can not be saved, please review form."
             render :new

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Odin Flight Confirmation</h1>
+    <p>
+      Thank you <%= @user.name %>, for choosing Odin Flights. This notice contains information to be used for your travel.
+      Please review your flight carefully.
+    </p>
+    <div>
+        <h5>From: <%= @flight.from_airport.airport_code %></h5>
+        <h5>To: <%= @flight.to_airport.airport_code %></h5>
+        <h5>Date-Time: <%= @flight.start_datetime.strftime("%m/%d/%Y %I:%M %p") %></h5>
+        <p>Please be there atleast an hour in advance to check in.</p>
+    </div>
+    <p>Thanks for booking with us and have a great day!</p>
+  </body>
+</html>
