@@ -128,3 +128,5 @@ Rails.application.configure do
     user_name: ENV['YAHOO_USERNAME'],
     password: ENV['YAHOO_PASSWORD']
   }
+
+end
