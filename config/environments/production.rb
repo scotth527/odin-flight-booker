@@ -129,4 +129,6 @@ Rails.application.configure do
     password: ENV['YAHOO_PASSWORD']
   }
 
+  config.action_mailer.perform_deliveries = true
+
 end
